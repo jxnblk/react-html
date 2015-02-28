@@ -1,0 +1,30 @@
+{
+  "name": "react-html",
+  "version": "0.0.1",
+  "description": "React HTML component for page layout",
+  "author": "Brent Jackson",
+  "license": "MIT",
+  "main": "html.js",
+  "scripts": {
+    "prepublish": "jsx -x jsx src .",
+    "start": "jsx -x jsx -w src ."
+  },
+  "peerDependencies": {
+    "react": "^0.12.2"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "react-tools": "^0.12.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jxnblk/react-html.git"
+  },
+  "keywords": [
+    "React",
+    "react-component",
+    "UI",
+    "Basscss"
+  ]
+}

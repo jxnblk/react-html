@@ -16,6 +16,11 @@ var Head = React.createClass({
 
 module.exports = React.createClass({
 
+  renderScript: function() {
+    if (!this.props.script) { return false; }
+    return (<script src={this.props.script} />);
+  },
+
   render: function() {
     var init = {
       __html: "window.INITIAL_PROPS = " + JSON.stringify(this._owner.props) + ";\n"
@@ -26,7 +31,7 @@ module.exports = React.createClass({
         <body>
           {this.props.children}
           <script dangerouslySetInnerHTML={init} />
-          <script src={this.props.script} />
+          {this.renderScript}
         </body>
       </html>
     )

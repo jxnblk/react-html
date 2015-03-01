@@ -1,6 +1,6 @@
 {
   "name": "react-html",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React HTML component for page layout",
   "author": "Brent Jackson",
   "license": "MIT",
@@ -12,8 +12,7 @@
   "peerDependencies": {
     "react": "^0.12.2"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "react-tools": "^0.12.2"
   },

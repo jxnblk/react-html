@@ -31,7 +31,7 @@ module.exports = React.createClass({
         <body>
           {this.props.children}
           <script dangerouslySetInnerHTML={init} />
-          {this.renderScript}
+          {this.renderScript()}
         </body>
       </html>
     )

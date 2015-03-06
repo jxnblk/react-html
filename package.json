@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "html.js",
   "scripts": {
-    "prepublish": "jsx -x jsx src .",
+    "jsx": "jsx -x jsx src .",
+    "prepublish": "npm run jsx",
     "start": "jsx -x jsx -w src ."
   },
   "peerDependencies": {

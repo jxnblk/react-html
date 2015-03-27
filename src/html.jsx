@@ -1,7 +1,49 @@
 
 var React = require('react');
 
-var Head = React.createClass({
+var Html = React.createClass({
+
+  getDefaultProps: function() {
+    return {
+      title: '',
+      description: '',
+      author: '',
+      favicon: false,
+      javascripts: [],
+      stylesheets: [],
+    }
+  },
+
+  renderScript: function(script, i) {
+    return (<script src={script} key={'script-' + i} />);
+  },
+
+  render: function() {
+    var ownerProps = this._owner ? this._owner.props : {};
+    var init = {
+      __html: "window.INITIAL_PROPS = " + JSON.stringify(ownerProps) + ";\n"
+    };
+    var javascripts = [];
+    if (this.props.script) {
+      javascripts = [this.props.script];
+    } else if (this.props.javascripts) {
+      javascripts = this.props.javascripts;
+    }
+    return (
+      <html>
+        <Html.Head {...this.props} />
+        <body>
+          {this.props.children}
+          <script dangerouslySetInnerHTML={init} />
+          {javascripts.map(this.renderScript)}
+        </body>
+      </html>
+    )
+  }
+
+});
+
+Html.Head = React.createClass({
 
   getDefaultProps: function() {
     return {
@@ -47,44 +89,6 @@ var Head = React.createClass({
 });
 
 
-module.exports = React.createClass({
 
-  getDefaultProps: function() {
-    return {
-      title: '',
-      description: '',
-      author: '',
-      favicon: false,
-      scripts: [],
-      stylesheets: [],
-    }
-  },
-
-  renderScript: function(script, i) {
-    return (<script src={script} key={'script-' + i} />);
-  },
-
-  render: function() {
-    var init = {
-      __html: "window.INITIAL_PROPS = " + JSON.stringify(this._owner.props) + ";\n"
-    };
-    var scripts = [];
-    if (this.props.script) {
-      scripts = [this.props.script];
-    } else if (this.props.scripts) {
-      scripts = this.props.scripts;
-    }
-    return (
-      <html>
-        <Head {...this.props} />
-        <body>
-          {this.props.children}
-          <script dangerouslySetInnerHTML={init} />
-          {scripts.map(this.renderScript)}
-        </body>
-      </html>
-    )
-  }
-
-});
+module.exports = Html;
 

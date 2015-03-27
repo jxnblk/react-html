@@ -1,7 +1,49 @@
 
 var React = require('react');
 
-var Head = React.createClass({displayName: "Head",
+var Html = React.createClass({displayName: "Html",
+
+  getDefaultProps: function() {
+    return {
+      title: '',
+      description: '',
+      author: '',
+      favicon: false,
+      javascripts: [],
+      stylesheets: [],
+    }
+  },
+
+  renderScript: function(script, i) {
+    return (React.createElement("script", {src: script, key: 'script-' + i}));
+  },
+
+  render: function() {
+    var ownerProps = this._owner ? this._owner.props : {};
+    var init = {
+      __html: "window.INITIAL_PROPS = " + JSON.stringify(ownerProps) + ";\n"
+    };
+    var javascripts = [];
+    if (this.props.script) {
+      javascripts = [this.props.script];
+    } else if (this.props.javascripts) {
+      javascripts = this.props.javascripts;
+    }
+    return (
+      React.createElement("html", null, 
+        React.createElement(Html.Head, React.__spread({},  this.props)), 
+        React.createElement("body", null, 
+          this.props.children, 
+          React.createElement("script", {dangerouslySetInnerHTML: init}), 
+          javascripts.map(this.renderScript)
+        )
+      )
+    )
+  }
+
+});
+
+Html.Head = React.createClass({displayName: "Head",
 
   getDefaultProps: function() {
     return {
@@ -47,44 +89,6 @@ var Head = React.createClass({displayName: "Head",
 });
 
 
-module.exports = React.createClass({displayName: "exports",
 
-  getDefaultProps: function() {
-    return {
-      title: '',
-      description: '',
-      author: '',
-      favicon: false,
-      scripts: [],
-      stylesheets: [],
-    }
-  },
-
-  renderScript: function(script, i) {
-    return (React.createElement("script", {src: script, key: 'script-' + i}));
-  },
-
-  render: function() {
-    var init = {
-      __html: "window.INITIAL_PROPS = " + JSON.stringify(this._owner.props) + ";\n"
-    };
-    var scripts = [];
-    if (this.props.script) {
-      scripts = [this.props.script];
-    } else if (this.props.scripts) {
-      scripts = this.props.scripts;
-    }
-    return (
-      React.createElement("html", null, 
-        React.createElement(Head, React.__spread({},  this.props)), 
-        React.createElement("body", null, 
-          this.props.children, 
-          React.createElement("script", {dangerouslySetInnerHTML: init}), 
-          scripts.map(this.renderScript)
-        )
-      )
-    )
-  }
-
-});
+module.exports = Html;
 

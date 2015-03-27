@@ -8,13 +8,17 @@
   "scripts": {
     "jsx": "jsx -x jsx src .",
     "prepublish": "npm run jsx",
-    "start": "jsx -x jsx -w src ."
+    "start": "jsx -x jsx -w src .",
+    "test": "mocha test"
   },
   "peerDependencies": {
     "react": "^0.12.2"
   },
   "dependencies": {},
   "devDependencies": {
+    "colors": "^1.0.3",
+    "html-validator": "0.0.8",
+    "mocha": "^2.2.1",
     "react-tools": "^0.12.2"
   },
   "repository": {

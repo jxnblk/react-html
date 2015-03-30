@@ -78,7 +78,7 @@ Html.Head = React.createClass({displayName: "Head",
         React.createElement("meta", {charSet: "utf-8"}), 
         React.createElement("title", null, this.props.title), 
         React.createElement("meta", {name: "description", content: this.props.description}), 
-        React.createElement("meta", {name: "authot", content: this.props.author}), 
+        React.createElement("meta", {name: "author", content: this.props.author}), 
         React.createElement("meta", {name: "viewport", content: "width=device-width,initial-scale=1.0"}), 
         this.renderFavicon(), 
         stylesheets.map(this.renderStylesheet)

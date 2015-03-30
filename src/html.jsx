@@ -78,7 +78,7 @@ Html.Head = React.createClass({
         <meta charSet="utf-8" />
         <title>{this.props.title}</title>
         <meta name="description" content={this.props.description} />
-        <meta name="authot" content={this.props.author} />
+        <meta name="author" content={this.props.author} />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         {this.renderFavicon()}
         {stylesheets.map(this.renderStylesheet)}

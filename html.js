@@ -19,22 +19,12 @@ var Html = React.createClass({displayName: "Html",
   },
 
   render: function() {
-    var ownerProps = this._owner ? this._owner.props : {};
-    var init = {
-      __html: "window.INITIAL_PROPS = " + JSON.stringify(ownerProps) + ";\n"
-    };
-    var javascripts = [];
-    if (this.props.script) {
-      javascripts = [this.props.script];
-    } else if (this.props.javascripts) {
-      javascripts = this.props.javascripts;
-    }
+    javascripts = this.props.javascripts;
     return (
       React.createElement("html", null, 
         React.createElement(Html.Head, React.__spread({},  this.props)), 
         React.createElement("body", null, 
           this.props.children, 
-          React.createElement("script", {dangerouslySetInnerHTML: init}), 
           javascripts.map(this.renderScript)
         )
       )
@@ -67,12 +57,7 @@ Html.Head = React.createClass({displayName: "Head",
   },
 
   render: function() {
-    var stylesheets = [];
-    if (this.props.stylesheet) {
-      stylesheets = [this.props.stylesheet];
-    } else if (this.props.stylesheets) {
-      stylesheets = this.props.stylesheets;
-    }
+    stylesheets = this.props.stylesheets;
     return (
       React.createElement("head", null, 
         React.createElement("meta", {charSet: "utf-8"}), 

@@ -41,6 +41,7 @@ Html.Head = React.createClass({
       description: '',
       author: '',
       favicon: false,
+      styles: false,
       stylesheets: [],
     }
   },
@@ -58,6 +59,10 @@ Html.Head = React.createClass({
 
   render: function() {
     stylesheets = this.props.stylesheets;
+    var styles = false;
+    if (this.props.styles) {
+      styles = <style dangerouslySetInnerHTML={{ __html: this.props.styles }} />;
+    }
     return (
       <head>
         <meta charSet="utf-8" />
@@ -66,6 +71,7 @@ Html.Head = React.createClass({
         <meta name="author" content={this.props.author} />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         {this.renderFavicon()}
+        {styles}
         {stylesheets.map(this.renderStylesheet)}
       </head>
     )
